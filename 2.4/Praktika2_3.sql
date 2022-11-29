@@ -104,15 +104,15 @@ VALUES
                       
 --1 Уникальный номер сотрудника, его ФИО и стаж работы – для всех сотрудников компании--
 
-select id, surname, name_employee, patronymic, DATE_PART('year',NOW())- DATE_PART('year',start_date) as experience  from employees e;
+SELECT id, surname, name_employee, patronymic, DATE_PART('year',NOW())- DATE_PART('year',start_date) AS experience  FROM employees e;
 
 --2 Уникальный номер сотрудника, его ФИО и стаж работы – только первых 3-х сотрудников--
 
-select id, surname, name_employee, patronymic, DATE_PART('year',NOW())- DATE_PART('year',start_date) as experience  from employees limit 3;
+SELECT id, surname, name_employee, patronymic, DATE_PART('year',NOW())- DATE_PART('year',start_date) AS experience  FROM employees LIMIT 3;
 
 --3 Уникальный номер сотрудников - водителей--
 
-select id, surname, name_employee, patronymic  from employees e where driver_license = true;
+SELECT id, surname, name_employee, patronymic  FROM employees e WHERE driver_license = true;
 
 --4 Выведите номера сотрудников, которые хотя бы за 1 квартал получили оценку D или E--
 
@@ -133,9 +133,9 @@ VALUES
     
     --//команда//--
     
-select 	employee_id from scores where q1 in ('D','E') or q2 in ('D','E') or q3 in ('D','E') or q4 in ('D','E');
+SELECT 	employee_id FROM scores WHERE q1 IN ('D','E') OR q2 IN ('D','E') OR q3 IN ('D','E') OR q4 IN ('D','E');
 
 --5 Выведите самую высокую зарплату в компании.--
   
-  select Max(salary) from employees;
+  SELECT Max(salary) FROM employees;
   
