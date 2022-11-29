@@ -1,7 +1,7 @@
 CREATE TYPE grade_type AS ENUM ('junior', 'middle', 'senior', 'lead');
 CREATE TYPE score_type AS ENUM ('A', 'B', 'C', 'D', 'E');
 
-//таблица с сотрудниками//
+--//таблица с сотрудниками//--
 
 CREATE TABLE IF NOT EXISTS employees (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS employees (
     CONSTRAINT departament_fk FOREIGN KEY (departament_id)
 	     REFERENCES departaments(id) ON DELETE CASCADE);
        
-//таблица с департаментами//
+--//таблица с департаментами//--
   
 CREATE TABLE IF NOT EXISTS departaments (
 	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS departaments (
     director_name VARCHAR (100) NOT NULL,
 	  employee_count SMALLINT);
     
-//таблица с оценками//
+--//таблица с оценками//--
   
 CREATE TABLE IF NOT EXISTS scores (
 	 scores_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS scores (
 	   CONSTRAINT employee_fk FOREIGN KEY (employee_id)
 	      REFERENCES  employees(id) ON DELETE CASCADE);
 	
-//ввод данных в таблицу департамента//
+--//ввод данных в таблицу департамента//--
 
 INSERT INTO departaments (
     name,
@@ -50,7 +50,7 @@ VALUES
     ('Data engineering', 'Иванов', 3),
 	  ('Data analyst', 'Петров', 2);
 
-//ввод данных в таблицу с сотрудниками//
+--//ввод данных в таблицу с сотрудниками//--
 
 INSERT INTO employees (
      surname,
@@ -71,7 +71,7 @@ VALUES
 	('Белова', 'Анастасия', 'Петровна', '1999-10-03', '2004-10-18', 'бухгалтер', 'middle', 130000, 2, True),
 	('Никетенко', 'Анна', 'Николаевна', '1997-02-21', '2006-05-26', 'HR', 'junior', 70000, 2, False);
  
-//ввод данных в таблицу департамента//
+--//ввод данных в таблицу департамента//--
 
 INSERT INTO departaments (
     name,
@@ -81,7 +81,7 @@ INSERT INTO departaments (
 VALUES
     ('Data Mining', 'Сироткин', 2);
     
-//ввод данных в таблицу с сотрудниками//
+--//ввод данных в таблицу с сотрудниками//--
     
 INSERT INTO employees (
        surname,
@@ -100,23 +100,23 @@ VALUES
   ('Канакина', 'Юлия', 'Михайловна',  '1995-07-22','2022-11-28', 'Инженер', 'junior', 50000, 3, False),
   ('Сироткин', 'Андрей', 'Альбертович',  '1998-09-03','2022-11-28', 'Инженер', 'senior', 150000, 3, False);
   
-                      ///анализ таблиц///
+                      --///анализ таблиц///--
                       
-1 Уникальный номер сотрудника, его ФИО и стаж работы – для всех сотрудников компании
+--1 Уникальный номер сотрудника, его ФИО и стаж работы – для всех сотрудников компании--
 
 select id, surname, name_employee, patronymic, DATE_PART('year',NOW())- DATE_PART('year',start_date) as experience  from employees e;
 
-2 Уникальный номер сотрудника, его ФИО и стаж работы – только первых 3-х сотрудников
+--2 Уникальный номер сотрудника, его ФИО и стаж работы – только первых 3-х сотрудников--
 
 select id, surname, name_employee, patronymic, DATE_PART('year',NOW())- DATE_PART('year',start_date) as experience  from employees limit 3;
 
-3 Уникальный номер сотрудников - водителей
+--3 Уникальный номер сотрудников - водителей--
 
 select id, surname, name_employee, patronymic  from employees e where driver_license = true;
 
-4 Выведите номера сотрудников, которые хотя бы за 1 квартал получили оценку D или E
+--4 Выведите номера сотрудников, которые хотя бы за 1 квартал получили оценку D или E--
 
-//ввод данных в таблицу с оценками//
+--//ввод данных в таблицу с оценками//--
 
 INSERT INTO scores (
 	employee_id,
@@ -131,9 +131,11 @@ VALUES
     ('3', 'A', 'B', 'A', 'B'),
     ('4', 'B', 'B', 'C', 'A');
     
+    --//команда//--
+    
 select 	employee_id from scores where q1 in ('D','E') or q2 in ('D','E') or q3 in ('D','E') or q4 in ('D','E');
 
-5 Выведите самую высокую зарплату в компании.
+--5 Выведите самую высокую зарплату в компании.--
   
   select Max(salary) from employees;
   
