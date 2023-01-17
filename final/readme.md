@@ -60,6 +60,8 @@ from user_agents import parse,
 Основная таблица 
 ![image](https://user-images.githubusercontent.com/114882919/213023491-45f2dc4b-4e17-42fb-a33e-40ca752c3e8f.png)
 
+Полный файл находится по адресу:
+
+http://146.120.224.166/user/tuhvatullina_gulgina/tree/result.csv
+
 Все операции по преобразванию и анализу данных можно посмотреть в файле exem№3.ipynb
-
-
